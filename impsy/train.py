@@ -43,7 +43,7 @@ def train(dimension: int, source: str, modelsize: str, earlystopping: bool, pati
     # Set up environment.
     # Only for GPU use:
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-    config = tf.ConfigProto()
+    config = tf.compat.v1.ConfigProto()
     config.gpu_options.allow_growth = True
     sess = tf.Session(config=config)
     tf.keras.backend.set_session(sess)

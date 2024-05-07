@@ -10,7 +10,7 @@ os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 print("Importing Keras and MDRNN.")
 start_import = time.time()
-import empi_mdrnn
+import empi_mdrnn #Guessing this is simply now mdrnn
 import tensorflow as tf
 from keras import backend as K
 from tensorflow.contrib.training.python.training.hparam import HParams

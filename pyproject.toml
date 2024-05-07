@@ -10,7 +10,7 @@ readme = "README.md"
 python = ">=3.11,<3.12"
 tensorflow-probability = "0.23.0"
 python-osc = "^1.8.3"
-keras-mdn-layer = {path = "/home/ninjatimtam/uni/Sem5/keras-mdn-layer"}
+keras-mdn-layer = {git = "https://github.com/u7484835/keras-mdn-layer.git"}
 pandas = "^2.0.3"
 tensorflow-macos = {version = "2.15.0", platform = "darwin"}
 tensorflow = {version = "2.15.0", platform = "linux"}

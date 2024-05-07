@@ -8,7 +8,10 @@ import tensorflow as tf
 import keras_mdn_layer as mdn
 import time
 
-tf.logging.set_verbosity(tf.logging.INFO)  # set logging.
+# Currenlty it seems that the logging functionality is not in the tf2 namespace. 
+# It appears the intended solution is to explicitly just reference it as a 
+# compat.v1 function. 
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.INFO)  # set logging.
 NET_MODE_TRAIN = 'train'
 NET_MODE_RUN = 'run'
 MODEL_DIR = "./models/"

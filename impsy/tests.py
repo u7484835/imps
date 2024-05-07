@@ -10,7 +10,7 @@ def test_mdrnn():
   print("Importing MDRNN.")
   start_import = time.time()
   import impsy.mdrnn as mdrnn
-  import tensorflow.compat.v1 as tf
+  import tensorflow as tf
   print("Done. That took", time.time() - start_import, "seconds.")
 
   model_config = mdrnn_config("s")

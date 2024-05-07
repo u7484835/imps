@@ -38,8 +38,8 @@ def train(dimension: int, source: str, modelsize: str, earlystopping: bool, pati
     os.environ['KMP_DUPLICATE_LIB_OK']='True' # TODO: is this necessary?
     # Import IMPS MDRNN at this point so CLI is fast.
     import impsy.mdrnn as mdrnn
-    from tensorflow.compat.v1 import keras
-    import tensorflow.compat.v1 as tf
+    from tensorflow import keras
+    import tensorflow as tf
     # Set up environment.
     # Only for GPU use:
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"

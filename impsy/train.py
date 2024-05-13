@@ -131,15 +131,15 @@ def train(dimension: int, source: str, modelsize: str, earlystopping: bool, pati
                         validation_split=VAL_SPLIT,
                         callbacks=callbacks)
 
-    # Save final Model
-    model.save_weights(model_dir + model_name + ".h5")
+    # <old way to> Save final Model
+    ## model.save_weights(model_dir + model_name + ".h5")
 
-    # ## Converting for tensorflow lite.
-    # # Convert the model.
-    # converter = tf.lite.TFLiteConverter.from_keras_model(model)
-    # tflite_model = converter.convert()
-    # tflite_model_name = f`{model_dir}{model_name}-lite.h5`
-    # with open(tflite_model_name, 'wb') as f:
-    #   f.write(tflite_model)
+    ## Converting for tensorflow lite.
+    # Convert the model.
+    converter = tf.lite.TFLiteConverter.from_keras_model(model)
+    tflite_model = converter.convert()
+    tflite_model_name = f'{model_dir}{model_name}-lite.tflite'
+    with open(tflite_model_name, 'wb') as f:
+        f.write(tflite_model)
 
     print("Training done, bye.")

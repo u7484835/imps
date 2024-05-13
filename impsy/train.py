@@ -46,10 +46,12 @@ def train(dimension: int, source: str, modelsize: str, earlystopping: bool, pati
     # It seems that the "correct" way to handle moving to tf2 in general is that 
     # old functions from tf1 which do not have new commands in tf2 are accessed
     # through tf.compat.v1.
-    config = tf.compat.v1.ConfigProto() 
-    config.gpu_options.allow_growth = True
-    sess = tf.Session(config=config)
-    tf.keras.backend.set_session(sess)
+    
+    # Commenting for non-gpu tests
+    #config = tf.compat.v1.ConfigProto() 
+    #config.gpu_options.allow_growth = True
+    #sess = tf.Session(config=config)
+    #tf.keras.backend.set_session(sess)
 
     model_config = mdrnn_config(modelsize)
     mdrnn_units = model_config["units"]

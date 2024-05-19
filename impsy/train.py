@@ -137,10 +137,10 @@ def train(dimension: int, source: str, modelsize: str, earlystopping: bool, pati
     ## Converting for tensorflow lite.
     # Convert the model.
     
-    tflite_model_name = f'{model_dir}{model_name}-sm'
-    model.save(tflite_model_name, save_format='tf')
+    tflite_model_name = f'{model_dir}{model_name}-sm.keras'
+    model.save(tflite_model_name, save_format='keras')
     
-    model = tf.keras.models.load_model(tflite_model_name)
+    modelKeras = tf.keras.models.load_model(tflite_model_name)
     
     # Converting in progress
     """

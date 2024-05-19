@@ -136,6 +136,14 @@ def train(dimension: int, source: str, modelsize: str, earlystopping: bool, pati
 
     ## Converting for tensorflow lite.
     # Convert the model.
+    
+    tflite_model_name = f'{model_dir}{model_name}-sm'
+    model.save(tflite_model_name, save_format='tf')
+    
+    model = tf.keras.models.load_model(tflite_model_name)
+    
+    # Converting in progress
+    """
     converter = tf.lite.TFLiteConverter.from_keras_model(model)
     tflite_model = converter.convert()
     converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS, tf.lite.OpsSet.SELECT_TF_OPS]
@@ -145,3 +153,4 @@ def train(dimension: int, source: str, modelsize: str, earlystopping: bool, pati
         f.write(tflite_model)
 
     print("Training done, bye.")
+    """

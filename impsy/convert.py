@@ -56,6 +56,7 @@ def convert(directory: str, filepath: str):
     tf.lite.OpsSet.TFLITE_BUILTINS, # enable TensorFlow Lite ops.
     tf.lite.OpsSet.SELECT_TF_OPS, # enable TensorFlow ops.   
     ]
+    converter._experimental_lower_tensor_list_ops = False
     tflite_model = converter.convert()
     tflite_model_name = directory + remove_keras_extension(filepath) + '-lite.tflite'
     with open(tflite_model_name, 'wb') as f:

@@ -64,12 +64,22 @@ def convert(directory: str, filepath: str):
 
     print("Conversion done, bye.")
     """
+    # Model Hyperparameters
+    SEQ_LEN = 50
+
+    # Directly defining "training" function's inputs
+    dimension = 9
+    batchsize = 64
+    
+    BATCH_SIZE = batchsize
+    STEPS = SEQ_LEN
+    INPUT_SIZE = dimension 
+    
+    
+    
     # Attempting colab conversion 
     run_model = tf.function(lambda x: model(x))
     # This is important, let's fix the input size.
-    BATCH_SIZE = 1
-    STEPS = 28
-    INPUT_SIZE = 28
     concrete_func = run_model.get_concrete_function(
         tf.TensorSpec([BATCH_SIZE, STEPS, INPUT_SIZE], model.inputs[0].dtype))
 

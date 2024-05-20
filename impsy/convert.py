@@ -56,7 +56,6 @@ def convert(directory: str, filepath: str):
     tf.lite.OpsSet.TFLITE_BUILTINS, # enable TensorFlow Lite ops.
     tf.lite.OpsSet.SELECT_TF_OPS, # enable TensorFlow ops.
     # Other options, enabling all to test
-    tf.lite.OpsSet.EXPERIMENTAL_STABLEHLO_OPS,
     tf.lite.OpsSet.EXPERIMENTAL_TFLITE_BUILTINS_ACTIVATIONS_INT16_WEIGHTS_INT8
     
     ]

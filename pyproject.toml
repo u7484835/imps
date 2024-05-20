@@ -16,6 +16,7 @@ tensorflow-macos = {version = "2.15.0", platform = "darwin"}
 tensorflow = {version = "2.15.0", platform = "linux"}
 click = "^8.1.7"
 jupyter = "^1.0.0"
+ipympl = "^0.9.4"
 
 [build-system]
 requires = ["poetry-core"]

@@ -54,7 +54,11 @@ def convert(directory: str, filepath: str):
     converter.optimizations = [tf.lite.Optimize.DEFAULT]
     converter.target_spec.supported_ops = [
     tf.lite.OpsSet.TFLITE_BUILTINS, # enable TensorFlow Lite ops.
-    tf.lite.OpsSet.SELECT_TF_OPS # enable TensorFlow ops.
+    tf.lite.OpsSet.SELECT_TF_OPS, # enable TensorFlow ops.
+    tf.lite.OpsSet.TFLITE_BUILTINS_INT8, # Other options, enabling all to test
+    tf.lite.OpsSet.EXPERIMENTAL_STABLEHLO_OPS,
+    tf.lite.OpsSet.EXPERIMENTAL_TFLITE_BUILTINS_ACTIVATIONS_INT16_WEIGHTS_INT8
+    
     ]
     converter._experimental_lower_tensor_list_ops = False
     tflite_model = converter.convert()

@@ -140,7 +140,8 @@ def train(dimension: int, source: str, modelsize: str, earlystopping: bool, pati
     tflite_model_name = f'{model_dir}{model_name}-sm.keras'
     model.save(tflite_model_name, save_format='keras')
     
-    modelKeras = tf.keras.models.load_model(tflite_model_name)
+    # Load the model
+    # model      = tf.keras.models.load_model(tflite_model_name, custom_objects={'MDN': mdn.MDN, 'mdn_loss_func': mdn.get_mixture_loss_func(1, N_MIXES)})
     
     # Converting in progress
     """

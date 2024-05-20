@@ -1,6 +1,6 @@
 import click
 import time
-from .utils import mdrnn_config
+from utils import mdrnn_config
 
 
 @click.command(name="test-mdrnn")

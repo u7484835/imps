@@ -2,7 +2,7 @@
 
 import click
 import keras_mdn_layer as mdn
-from .utils import mdrnn_config
+from utils import mdrnn_config
 import re
 
 import impsy.mdrnn as mdrnn

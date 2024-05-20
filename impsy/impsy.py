@@ -2,11 +2,11 @@
 
 
 import click
-from .dataset import dataset
-from .train import train
-from .interaction import run
-from .tests import test_mdrnn
-from .convert import convert
+from dataset import dataset
+from train import train
+from interaction import run
+from tests import test_mdrnn
+from convert import convert
 
 @click.group()
 def cli():

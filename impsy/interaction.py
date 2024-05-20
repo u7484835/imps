@@ -10,7 +10,7 @@ from pythonosc import dispatcher
 from pythonosc import osc_server
 from pythonosc import udp_client
 from threading import Thread
-from .utils import mdrnn_config
+from utils import mdrnn_config
 
 
 np.set_printoptions(precision=2)

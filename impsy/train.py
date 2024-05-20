@@ -6,7 +6,7 @@ import numpy as np
 import os
 import datetime
 import click
-from .utils import mdrnn_config
+from utils import mdrnn_config
 
 
 # Input and output to serial are bytes (0-255)

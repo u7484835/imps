@@ -37,17 +37,29 @@ def convert(directory: str, filepath: str):
     # Load the model
     tflite_model_name = directory + filepath
     model = tf.keras.models.load_model(tflite_model_name, custom_objects={'MDN': mdn.MDN, 'mdn_loss_func': mdn.get_mixture_loss_func(1, N_MIXES)})
+    print("Successfully loaded... \n")
+    
+    
+    # Converts the filepath name into blank name so we can add tflite
+    def remove_keras_extension(filepath):
+        if filepath.endswith(".keras"):
+            return filepath[:-6]
+        else:
+            raise ValueError("Invalid file extension. Expected '.keras' at the end of the filepath.")
     
     
     ## Converting for tensorflow lite.
     # Converting in progress
-    """
     converter = tf.lite.TFLiteConverter.from_keras_model(model)
-    tflite_model = converter.convert()
-    converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS, tf.lite.OpsSet.SELECT_TF_OPS]
+    converter.optimizations = [tf.lite.Optimize.DEFAULT]
+    converter.target_spec.supported_ops = [
+    tf.lite.OpsSet.TFLITE_BUILTINS, # enable TensorFlow Lite ops.
+    tf.lite.OpsSet.SELECT_TF_OPS # enable TensorFlow ops.
+    ]
     converter._experimental_lower_tensor_list_ops = False
-    tflite_model_name = f'{model_dir}{model_name}-lite.tflite'
+    tflite_model = converter.convert()
+    tflite_model_name = directory + remove_keras_extension(filepath) + '-lite.tflite'
     with open(tflite_model_name, 'wb') as f:
         f.write(tflite_model)
 
-    print("Training done, bye.") """
+    print("Conversion done, bye.")

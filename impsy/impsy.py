@@ -6,6 +6,7 @@ from .dataset import dataset
 from .train import train
 from .interaction import run
 from .tests import test_mdrnn
+from .convert import convert
 
 @click.group()
 def cli():
@@ -16,6 +17,7 @@ def main():
     """The entry point function for IMPSY, this just passes through the interfaces for each command"""
     cli.add_command(dataset)
     cli.add_command(train)
+    cli.add_command(convert)
     cli.add_command(run)
     cli.add_command(test_mdrnn)
     # runs the command line interface

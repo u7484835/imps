@@ -15,7 +15,7 @@ import tensorflow as tf
 @click.command(name="convert2")
 @click.option("-D", "--directory", type=str, default="models/", help="The directory to find the keras file.")
 @click.option("-F", "--filepath", type = str, default="musicMDRNN-dim9-layers2-units16-mixtures5-scale10-sm.keras", help="The name of the .keras file to be converted")
-def convert(directory: str, filepath: str):
+def convert2(directory: str, filepath: str):
     """Loads a .keras mdrnn model and converts it to a .tflite model."""
     
     # Old methods to save 

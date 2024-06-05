@@ -12,7 +12,7 @@ import tensorflow as tf
 
 
 
-@click.command(name="convert")
+@click.command(name="convert2")
 @click.option("-D", "--directory", type=str, default="models/", help="The directory to find the keras file.")
 @click.option("-F", "--filepath", type = str, default="musicMDRNN-dim9-layers2-units16-mixtures5-scale10-sm.keras", help="The name of the .keras file to be converted")
 def convert(directory: str, filepath: str):
@@ -47,20 +47,47 @@ def convert(directory: str, filepath: str):
         else:
             raise ValueError("Invalid file extension. Expected '.keras' at the end of the filepath.")
     
-    # Converting for tensorflow lite.
+    """"
+    ## Converting for tensorflow lite.
     # Converting in progress
     converter = tf.lite.TFLiteConverter.from_keras_model(model)
-    """
     converter.optimizations = [tf.lite.Optimize.DEFAULT]
     converter.target_spec.supported_ops = [
     tf.lite.OpsSet.TFLITE_BUILTINS, # enable TensorFlow Lite ops.
     tf.lite.OpsSet.SELECT_TF_OPS, # enable TensorFlow ops.   
     ]
-    converter._experimental_lower_tensor_list_ops = False"""
+    converter._experimental_lower_tensor_list_ops = False
     tflite_model = converter.convert()
     tflite_model_name = directory + remove_keras_extension(filepath) + '-lite.tflite'
     with open(tflite_model_name, 'wb') as f:
         f.write(tflite_model)
 
     print("Conversion done, bye.")
+    """
+    # Model Hyperparameters
+    SEQ_LEN = 50
 
+    # Directly defining "training" function's inputs
+    dimension = 9
+    batchsize = 64
+    
+    BATCH_SIZE = batchsize
+    STEPS = SEQ_LEN
+    INPUT_SIZE = dimension 
+    
+    
+    
+    # Attempting colab conversion 
+    run_model = tf.function(lambda x: model(x))
+    # This is important, let's fix the input size.
+    concrete_func = run_model.get_concrete_function(
+        tf.TensorSpec([BATCH_SIZE, STEPS, INPUT_SIZE], model.inputs[0].dtype))
+
+    # model directory.
+    MODEL_DIR = "models"
+    model.save(MODEL_DIR, save_format="tf", signatures=concrete_func)
+
+    converter = tf.lite.TFLiteConverter.from_saved_model(MODEL_DIR)
+    tflite_model = converter.convert()
+    
+    print("Conversion done, bye.")

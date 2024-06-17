@@ -8,6 +8,7 @@ from .interaction import run
 from .tests import test_mdrnn
 from .convert import convert
 from .convert2 import convert2
+from .convert0 import convert0
 
 
 @click.group()
@@ -20,6 +21,7 @@ def main():
     cli.add_command(dataset)
     cli.add_command(train)
     cli.add_command(convert)
+    cli.add_command(convert0)
     cli.add_command(convert2)
     cli.add_command(run)
     cli.add_command(test_mdrnn)

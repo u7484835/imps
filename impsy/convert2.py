@@ -90,4 +90,9 @@ def convert2(directory: str, filepath: str):
     converter = tf.lite.TFLiteConverter.from_saved_model(MODEL_DIR)
     tflite_model = converter.convert()
     
+    tflite_model_name = directory + remove_keras_extension(filepath) + '-lite.tflite'
+    with open(tflite_model_name, 'wb') as f:
+        f.write(tflite_model)
+
     print("Conversion done, bye.")
+    
